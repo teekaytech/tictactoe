@@ -64,7 +64,7 @@ const gameController = (board) => {
     cells.forEach((cell) => {
       cell.addEventListener("click", function () {
         if (checkMove(cell)) {
-          makeMove(cell, mark) ? true : false;
+          makeMove(cell, mark);
           if (WinCond(board, mark)) {
             console.log("game over");
             tictactoebord.style.display = "none";
@@ -84,9 +84,19 @@ const gameController = (board) => {
 
   return { render, validateMove };
 };
-const player1 = Player("player1", "X");
-const player2 = Player("player2", "O");
-const board = GameBoard();
-const game = gameController(board.getMoves());
-game.render();
-game.validateMove(cells, player1.mark);
+
+const startGame = document.getElementById('start');
+
+start.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const players = document.querySelectorAll('.player');
+  const player1 = Player(players[0].value, "X");
+  const player2 = Player(players[1].value, "O");
+
+  const board = GameBoard();
+  const game = gameController(board.getMoves());
+  game.render();
+  game.validateMove(cells, player1.mark);
+
+});
