@@ -38,21 +38,27 @@ const gameController = (board) => {
   makeMove = (cell, mark) => {
     if (board[cell.id] === '') {
       board[cell.id] = mark;
+      console.log(board);
       render();
       return true;
     } else { return false; }
   }
 
-  return {render, makeMove}
+  validateMove = (cells, move) => {
+    for (const cell of cells) {
+      cell.addEventListener('click', function() {
+        return makeMove(cell, move) ? true : false;
+      });
+    }
+  }
+
+  return {render, validateMove}
 }
 
 
+const player1 = Player('player1', 'X');
+const player2 = Player('player2', 'O');
 const board = GameBoard();
 const game = gameController(board.getMoves());
 game.render();
-
-for (const cell of cells) {
-  cell.addEventListener('click', function() {
-    return makeMove(cell, 'A') ? true : false;
-  });
-}
+game.validateMove(cells, 'A');
