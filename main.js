@@ -1,7 +1,8 @@
-const parent = document.querySelector(".container");
-const cells = document.querySelectorAll(".cell");
+const mainContainer = document.querySelector(".container");
+let cells = document.querySelectorAll(".cell");
 const tictactoebord = document.querySelector(".board");
 const movehtml = document.querySelector(".move");
+
 const Player = (name, mark) => {
   return { name, mark };
 };
@@ -13,9 +14,15 @@ const GameBoard = () => {
     return moves;
   };
 
-  clear = () => {};
+  showBoard = () => {
+    return tictactoebord.style.display = 'block';
+  };
 
-  return { getMoves, clear };
+  clear = () => {
+    return moves = ["", "", "", "", "", "", "", "", ""];
+  };
+
+  return { getMoves, clear, showBoard };
 };
 
 const Checkwin = (board, mark) => {
@@ -44,10 +51,6 @@ const gameController = (board) => {
     }
   };
 
-  checkMove = (cell) => {
-    return cell.innerHTML === "" ? true : false;
-  };
-
   makeMove = (cell, mark) => {
     if (board[cell.id] === "") {
       board[cell.id] = mark;
@@ -63,10 +66,14 @@ const gameController = (board) => {
     let mark = markstart;
     cells.forEach((cell) => {
       cell.addEventListener("click", function () {
-        if (checkMove(cell)) {
+        console.log(cell);
+        if (board[cell.id] === "") {
           makeMove(cell, mark);
           if (WinCond(board, mark)) {
+            movehtml.innerHTML = "Game Over!!!";
+            mainContainer.appendChild(restart);
             console.log("game over");
+
             tictactoebord.style.display = "none";
           } else if (!WinCond(board, mark) && board.includes("")) {
             mark === "X" ? (mark = "O") : (mark = "X");
@@ -85,18 +92,47 @@ const gameController = (board) => {
   return { render, validateMove };
 };
 
-const startGame = document.getElementById('start');
+const gameInit = (board, player) => {
+  let game = gameController(board.getMoves());
+  board.showBoard();
+  game.render();
+  game.validateMove(cells, player.mark);
 
-start.addEventListener('click', function(e) {
+  return {};
+};
+
+
+const players = document.querySelectorAll('.player');
+const startGame = document.getElementById('start');
+const restart = document.createElement('button');
+restart.id = 'restart';
+restart.class = 'restart';
+restart.textContent = 'Restart';
+
+
+startGame.addEventListener('click', function(e) {
   e.preventDefault();
 
-  const players = document.querySelectorAll('.player');
-  const player1 = Player(players[0].value, "X");
-  const player2 = Player(players[1].value, "O");
+  let board = GameBoard();
+  let player1 = Player(players[0].value, "X");
+  let player2 = Player(players[1].value, "O");
 
-  const board = GameBoard();
-  const game = gameController(board.getMoves());
-  game.render();
-  game.validateMove(cells, player1.mark);
-
+  gameInit(board, player1);
 });
+
+restart.addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  let board = GameBoard();
+  let player1 = Player(players[0].value, "X");
+  let player2 = Player(players[1].value, "O");
+
+  cells.forEach(cell => {
+    cell.innerHTML = '';
+  });
+  board.clear()
+  let ngame = gameController(board.getMoves());
+  board.showBoard();
+  ngame.render();
+  ngame.validateMove(cells, 'X');
+})
