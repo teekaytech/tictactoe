@@ -1,6 +1,7 @@
 const parent = document.querySelector(".container");
 const cells = document.querySelectorAll(".cell");
-
+const tictactoebord = document.querySelector(".board");
+const movehtml = document.querySelector(".move");
 const Player = (name, mark) => {
   return { name, mark };
 };
@@ -44,7 +45,7 @@ const gameController = (board) => {
   };
 
   checkMove = (cell) => {
-    return (cell.innerHTML = "" ? false : true);
+    return cell.innerHTML === "" ? true : false;
   };
 
   makeMove = (cell, mark) => {
@@ -58,17 +59,27 @@ const gameController = (board) => {
     }
   };
 
-  validateMove = (cells, move) => {
-    let gameon = true;
-    for (const cell of cells) {
+  validateMove = (cells, markstart) => {
+    let mark = markstart;
+    cells.forEach((cell) => {
       cell.addEventListener("click", function () {
-        makeMove(cell, move) ? true : false;
-        if (WinCond(board, player1.mark)) {
-          console.log("game over");
-          return (gameon = false);
+        if (checkMove(cell)) {
+          makeMove(cell, mark) ? true : false;
+          if (WinCond(board, mark)) {
+            console.log("game over");
+            tictactoebord.style.display = "none";
+          } else if (!WinCond(board, mark) && board.includes("")) {
+            mark === "X" ? (mark = "O") : (mark = "X");
+            console.log(mark);
+            movehtml.innerHTML = "change turn";
+          } else {
+            console.log("draw");
+          }
+        } else {
+          movehtml.innerHTML = "Invalid move";
         }
       });
-    }
+    });
   };
 
   return { render, validateMove };
