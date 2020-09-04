@@ -6,13 +6,19 @@
   width: 50px;
   height: 50px;
   padding: 5px;
-  padding-top: 15px;
+  padding-top: 10px;
   box-sizing: border-box;
 }
-
+.row {
+  margin: 5px 0;
+}
 .board {
   display: none;
   margin: 20px auto;
+  background-color: rgba(255, 127, 127, 0.336);
+  color: rgb(255, 127, 127);
+  font-size: 22px;
+  padding: 10px;
 }
 .container {
   text-align: center;
@@ -22,4 +28,11 @@
   justify-content: space-between;
   width: 400px;
   margin: 10px auto;
+}
+body {
+  background-color: aquamarine;
+}
+.move {
+  background-color: rgba(0, 0, 255, 0.281);
+  color: blue;
 }

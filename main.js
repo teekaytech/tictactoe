@@ -115,6 +115,7 @@ startGame.addEventListener("click", function (e) {
   players_lis.push(Player(players[1].value, "O", 0));
   movehtml.innerHTML = `hello players , ${players_lis[0].name} will play with ${players_lis[0].mark} 
   and ${players_lis[1].name} will play with ${players_lis[1].mark}`;
+  movehtml.style.padding = "10px";
   let game = gameController(board.moves);
   board.showBoard();
   game.render();
