@@ -8,15 +8,19 @@
   </head>
   <body>
     <div class="container">
-      <form>
+      <form id="form">
         <label for="player1">Player 1:</label>
-        <input type="text" class="player">
+        <input type="text" class="player" />
 
         <label for="player1">Player 2:</label>
-        <input type="text" class="player">
+        <input type="text" class="player" />
 
-        <input type="submit" id="start" value="Start Game">
+        <input type="submit" id="start" value="Start Game" />
       </form>
+      <div class="score">
+        <div id="player1_score"></div>
+        <div id="player2_score"></div>
+      </div>
       <div class="board">
         <div class="row">
           <div class="cell cell1" id="0"></div>
