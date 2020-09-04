@@ -6,7 +6,7 @@ In this game you and your friend will chose a position from the board and you wi
 
 ## Live Demo
 
-[Link here](https://stoic-shannon-858e28.netlify.app/)
+[Link here](https://rawcdn.githack.com/teekaytech/tictactoe/3c0dad1f8856cce4d214f21de977a25737c5e3e3/index.html)
 
 ## ScreenShoot
 
