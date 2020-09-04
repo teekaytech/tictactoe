@@ -13,7 +13,9 @@
 .row {
   margin: 5px 0;
 }
-
+.none {
+  display: none;
+}
 .board {
   display: none;
   margin: 20px auto;

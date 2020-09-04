@@ -1,15 +1,16 @@
-const mainContainer = document.querySelector(".container");
-let cells = document.querySelectorAll(".cell");
-const tictactoebord = document.querySelector(".board");
-const movehtml = document.querySelector(".move");
-const form = document.querySelector("#form");
-const player1_score = document.querySelector("#player1_score");
-const player2_score = document.querySelector("#player2_score");
+import {
+  mainContainer,
+  cells,
+  tictactoebord,
+  movehtml,
+  form,
+  player1_score,
+  player2_score,
+  players,
+  startGame,
+  restart,
+} from "./dom.js"; /*eslint-disable-line */
 
-const players = document.querySelectorAll(".player");
-const startGame = document.getElementById("start");
-
-const restart = document.createElement("button");
 restart.id = "restart";
 restart.class = "restart";
 restart.textContent = "Restart";
@@ -57,7 +58,6 @@ const gameController = (board) => {
   const makeMove = (cell, mark) => {
     if (board[cell.id] === "") {
       board[cell.id] = mark;
-      console.log(board);
       render();
       return board;
     } else {
@@ -69,29 +69,26 @@ const gameController = (board) => {
     let player = 0;
     cells.forEach((cell) => {
       cell.addEventListener("click", function () {
-        console.log(cell.id);
         if (cell.innerHTML.length == 0) {
-          console.log(cell.id);
           board = makeMove(cell, players[player].mark);
           if (WinCond(board, players[player].mark)) {
             movehtml.innerHTML = `Game Over!!! ${players[player].name} Won`;
             mainContainer.appendChild(restart);
             tictactoebord.style.display = "none";
-            board = ["", "", "", "", "", "", "", "", ""];
+            board = GameBoard().moves;
             players[player].score += 1;
             showScore(players);
-            console.log(players[player].score);
             restart.style.display = "inline-block";
           } else if (
             !WinCond(board, players[player].mark) &&
             board.includes("")
           ) {
             player === 0 ? (player = 1) : (player = 0);
-            console.log(players[player].mark);
             movehtml.innerHTML = `now it ${players[player].name} turn`;
           } else {
             tictactoebord.style.display = "none";
             movehtml.innerHTML = " it a draw better luck next match!";
+            board = GameBoard().moves;
             mainContainer.appendChild(restart);
             restart.style.display = "inline-block";
           }
