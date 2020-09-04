@@ -6,6 +6,14 @@ const form = document.querySelector("#form");
 const player1_score = document.querySelector("#player1_score");
 const player2_score = document.querySelector("#player2_score");
 
+const players = document.querySelectorAll(".player");
+const startGame = document.getElementById("start");
+
+const restart = document.createElement("button");
+restart.id = "restart";
+restart.class = "restart";
+restart.textContent = "Restart";
+
 const Player = (name, mark, score) => {
   return { name, mark, score };
 };
@@ -13,7 +21,7 @@ const Player = (name, mark, score) => {
 const GameBoard = () => {
   let moves = ["", "", "", "", "", "", "", "", ""];
 
-  showBoard = () => {
+  const showBoard = () => {
     return (tictactoebord.style.display = "inline-block");
   };
 
@@ -40,13 +48,13 @@ const WinCond = (board, mark) => {
 };
 
 const gameController = (board) => {
-  render = () => {
+  const render = () => {
     for (let index = 0; index < cells.length; index++) {
       cells[index].innerHTML = board[index];
     }
   };
 
-  makeMove = (cell, mark) => {
+  const makeMove = (cell, mark) => {
     if (board[cell.id] === "") {
       board[cell.id] = mark;
       console.log(board);
@@ -57,7 +65,7 @@ const gameController = (board) => {
     }
   };
 
-  validateMove = (cells, players) => {
+  const validateMove = (cells, players) => {
     let player = 0;
     cells.forEach((cell) => {
       cell.addEventListener("click", function () {
@@ -100,12 +108,6 @@ const showScore = (players_lis) => {
   player1_score.innerHTML = `${players_lis[0].name} score : ${players_lis[0].score}`;
   player2_score.innerHTML = `${players_lis[1].name} score : ${players_lis[1].score}`;
 };
-const players = document.querySelectorAll(".player");
-const startGame = document.getElementById("start");
-const restart = document.createElement("button");
-restart.id = "restart";
-restart.class = "restart";
-restart.textContent = "Restart";
 
 startGame.addEventListener("click", function (e) {
   e.preventDefault();
