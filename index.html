@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <div class="container">
+      <form id="form">
+        <label for="player1">Player 1:</label>
+        <input type="text" class="player" />
+
+        <label for="player1">Player 2:</label>
+        <input type="text" class="player" />
+
+        <input type="submit" id="start" value="Start Game" />
+      </form>
+      <div class="score">
+        <div id="player1_score"></div>
+        <div id="player2_score"></div>
+      </div>
+      <div class="none" id="board">
+        <div class="row">
+          <div class="cell cell1" id="0"></div>
+          <div class="cell cell2" id="1"></div>
+          <div class="cell cell3" id="2"></div>
+        </div>
+        <div class="row">
+          <div class="cell cell4" id="3"></div>
+          <div class="cell cell5" id="4"></div>
+          <div class="cell cell6" id="5"></div>
+        </div>
+        <div class="row">
+          <div class="cell cell7" id="6"></div>
+          <div class="cell cell8" id="7"></div>
+          <div class="cell cell9" id="8"></div>
+        </div>
+      </div>
+      <p class="move"></p>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
