@@ -13,6 +13,10 @@ const restart = document.createElement("button");
 restart.id = "restart";
 restart.className = "restart";
 restart.textContent = "Restart";
+
+const displaymsg = (msg) => {
+  movehtml.innerHTML = msg;
+};
 export {
   mainContainer,
   cells,
@@ -24,4 +28,5 @@ export {
   players,
   startGame,
   restart,
+  displaymsg,
 };

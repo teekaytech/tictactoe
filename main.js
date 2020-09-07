@@ -9,6 +9,7 @@ import {
   players,
   startGame,
   restart,
+  displaymsg,
 } from "./dom.js"; /*eslint-disable-line */
 
 const Player = (name, mark, score) => {
@@ -68,7 +69,7 @@ const gameController = (board) => {
         if (cell.innerHTML.length == 0) {
           board = makeMove(cell, players[player].mark);
           if (WinCond(board, players[player].mark)) {
-            movehtml.innerHTML = `Game Over!!! ${players[player].name} Won`;
+            displaymsg(`Game Over!!! ${players[player].name} Won`);
             mainContainer.appendChild(restart);
             tictactoebord.className = "none";
             board = GameBoard().moves;
@@ -80,16 +81,16 @@ const gameController = (board) => {
             board.includes("")
           ) {
             player === 0 ? (player = 1) : (player = 0);
-            movehtml.innerHTML = `now it ${players[player].name} turn`;
+            displaymsg(`now it ${players[player].name} turn`);
           } else {
             tictactoebord.className = "none";
-            movehtml.innerHTML = " it a draw better luck next match!";
+            displaymsg(" it a draw better luck next match!");
             board = GameBoard().moves;
             mainContainer.appendChild(restart);
             restart.className = "display";
           }
         } else {
-          movehtml.innerHTML = "Invalid move";
+          displaymsg("Invalid move");
         }
       });
     });
@@ -108,8 +109,8 @@ startGame.addEventListener("click", function (e) {
   let board = GameBoard();
   players_lis.push(Player(players[0].value, "X", 0));
   players_lis.push(Player(players[1].value, "O", 0));
-  movehtml.innerHTML = `hello players , ${players_lis[0].name} will play with ${players_lis[0].mark} 
-  and ${players_lis[1].name} will play with ${players_lis[1].mark}`;
+  displaymsg(`hello players , ${players_lis[0].name} will play with ${players_lis[0].mark}
+  and ${players_lis[1].name} will play with ${players_lis[1].mark}`);
   movehtml.style.padding = "10px";
   let game = gameController(board.moves);
   board.showBoard();
@@ -127,6 +128,6 @@ restart.addEventListener("click", function (e) {
   });
   let board = GameBoard();
   board.showBoard();
-  movehtml.innerHTML = "let start again";
+  displaymsg("let start again");
   restart.className = "none";
 });
