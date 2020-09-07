@@ -11,10 +11,6 @@ import {
   restart,
 } from "./dom.js"; /*eslint-disable-line */
 
-restart.id = "restart";
-restart.class = "restart";
-restart.textContent = "Restart";
-
 const Player = (name, mark, score) => {
   return { name, mark, score };
 };
@@ -23,7 +19,7 @@ const GameBoard = () => {
   let moves = ["", "", "", "", "", "", "", "", ""];
 
   const showBoard = () => {
-    return (tictactoebord.style.display = "inline-block");
+    return (tictactoebord.className = "board");
   };
 
   return { moves, showBoard };
@@ -74,11 +70,11 @@ const gameController = (board) => {
           if (WinCond(board, players[player].mark)) {
             movehtml.innerHTML = `Game Over!!! ${players[player].name} Won`;
             mainContainer.appendChild(restart);
-            tictactoebord.style.display = "none";
+            tictactoebord.className = "none";
             board = GameBoard().moves;
             players[player].score += 1;
             showScore(players);
-            restart.style.display = "inline-block";
+            restart.className = "display";
           } else if (
             !WinCond(board, players[player].mark) &&
             board.includes("")
@@ -86,11 +82,11 @@ const gameController = (board) => {
             player === 0 ? (player = 1) : (player = 0);
             movehtml.innerHTML = `now it ${players[player].name} turn`;
           } else {
-            tictactoebord.style.display = "none";
+            tictactoebord.className = "none";
             movehtml.innerHTML = " it a draw better luck next match!";
             board = GameBoard().moves;
             mainContainer.appendChild(restart);
-            restart.style.display = "inline-block";
+            restart.className = "display";
           }
         } else {
           movehtml.innerHTML = "Invalid move";
@@ -119,7 +115,7 @@ startGame.addEventListener("click", function (e) {
   board.showBoard();
   game.render();
   game.validateMove(cells, players_lis);
-  form.style.display = "none";
+  form.className = "none";
   showScore(players_lis);
 });
 
@@ -132,5 +128,5 @@ restart.addEventListener("click", function (e) {
   let board = GameBoard();
   board.showBoard();
   movehtml.innerHTML = "let start again";
-  restart.style.display = "none";
+  restart.className = "none";
 });
