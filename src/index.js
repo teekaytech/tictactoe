@@ -13,7 +13,7 @@ import {
 } from './dom.js'; /*eslint-disable-line */
 import WinCond from './checkwin';
 import Player from './Players';
-import GameBoard from './GameBoard';
+import GameBoard from './Gameboard';
 
 const gameController = (board) => {
   const render = () => {
