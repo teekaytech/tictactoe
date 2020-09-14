@@ -38,6 +38,28 @@ $ cd tictactoe
 Copy the absolute path of the index file, paste on your browser and click on enter
 ```
 
+## installing npm dependencies
+
+the dependencies needed in this project are:
+
+- Jest
+- Bable
+- Webpack
+- Webpack-cli
+- Webpack-dev-server
+
+**You can Install the dependencies with this commands**
+
+```bash
+$ npm install
+```
+
+## run Tests
+
+```
+$ npm run test
+```
+
 ## Authors
 
 👤 **Rida Elbahtouri**
@@ -46,17 +68,11 @@ Copy the absolute path of the index file, paste on your browser and click on ent
 - [Twitter](https://twitter.com/RElbahtouri)
 - [Linkedin](https://www.linkedin.com/in/rida-elbahtouri/)
 
-👤 **Taofeek Olalere**
-
-- [Github](https://github.com/teekaytech)
-- [Twitter](https://twitter.com/ola_lere)
-- [Linkedin](https://www.linkedin.com/in/olaleretaofeek)
-
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the <a href="https://github.com/rida-elbahtouri/tictactoe/issues" target="_blank">issues page</a>.
+Feel free to check the <a href="https://github.com/teekaytech/tictactoe/issues" target="_blank">issues page</a>.
 
 ## Show your support
 
