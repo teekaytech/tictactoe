@@ -11,3 +11,6 @@ test('it return true when the move is a winning one', () => {
 test('it draw when the board is full and no one won', () => {
   expect(itDraw(con2, 'X')).toBe(true);
 });
+test('it return false  when the board is not full', () => {
+  expect(itDraw(con1, 'X')).toBe(false);
+});
