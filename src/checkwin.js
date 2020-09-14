@@ -17,4 +17,5 @@ const WinCond = (board, mark) => {
   return [con1, con2, con3, con4, con5, con6, con7, con8].some(checktrue);
 };
 
+export const itDraw = (board, mark) => !WinCond(board, mark) && !board.includes('');
 export default WinCond;

@@ -11,7 +11,7 @@ import {
   restart,
   displaymsg,
 } from './dom.js'; /*eslint-disable-line */
-import WinCond from './checkwin';
+import WinCond, { itDraw } from './checkwin';
 import Player from './Players';
 import GameBoard from './Gameboard';
 
@@ -53,10 +53,7 @@ const gameController = (board) => {
             players[player].score += 1;
             showScore(players);
             restart.className = 'display';
-          } else if (
-            !WinCond(board, players[player].mark)
-            && board.includes('')
-          ) {
+          } else if (!itDraw(board, players[player].mark)) {
             player === 0 ? (player = 1) : (player = 0); /*eslint-disable-line */
             displaymsg(`now it ${players[player].name} turn`);
           } else {
