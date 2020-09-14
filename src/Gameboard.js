@@ -1,5 +1,5 @@
 const GameBoard = (tictactoebord) => {
-  let moves = ['', '', '', '', '', '', '', '', ''];
+  const moves = ['', '', '', '', '', '', '', '', ''];
 
   const showBoard = () => {
     tictactoebord.className = 'board';

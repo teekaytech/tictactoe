@@ -4,8 +4,8 @@ import {
   tictactoebord,
   movehtml,
   form,
-  player1_score,
-  player2_score,
+  player1Score,
+  player2Score,
   players,
   startGame,
   restart,
@@ -15,9 +15,17 @@ import WinCond from './checkwin';
 import Player from './Players';
 import GameBoard from './Gameboard';
 
+const showScore = (playersLis) => {
+  player1Score.innerHTML = `${playersLis[0].name} score : ${playersLis[0].score}`;
+  player2Score.innerHTML = `${playersLis[1].name} score : ${playersLis[1].score}`;
+};
 const gameController = (board) => {
   const render = () => {
-    for (let index = 0; index < cells.length; index++) {
+    for (
+      let index = 0;
+      index < cells.length;
+      index++ /*eslint-disable-line */
+    ) {
       cells[index].innerHTML = board[index];
     }
   };
@@ -27,16 +35,15 @@ const gameController = (board) => {
       board[cell.id] = mark;
       render();
       return board;
-    } else {
-      return board;
     }
+    return board;
   };
 
   const validateMove = (cells, players) => {
     let player = 0;
     cells.forEach((cell) => {
-      cell.addEventListener('click', function () {
-        if (cell.innerHTML.length == 0) {
+      cell.addEventListener('click', () => {
+        if (cell.innerHTML.length === 0) {
           board = makeMove(cell, players[player].mark);
           if (WinCond(board, players[player].mark)) {
             displaymsg(`Game Over!!! ${players[player].name} Won`);
@@ -47,10 +54,10 @@ const gameController = (board) => {
             showScore(players);
             restart.className = 'display';
           } else if (
-            !WinCond(board, players[player].mark) &&
-            board.includes('')
+            !WinCond(board, players[player].mark)
+            && board.includes('')
           ) {
-            player === 0 ? (player = 1) : (player = 0);
+            player === 0 ? (player = 1) : (player = 0); /*eslint-disable-line */
             displaymsg(`now it ${players[player].name} turn`);
           } else {
             tictactoebord.className = 'none';
@@ -68,35 +75,31 @@ const gameController = (board) => {
 
   return { render, validateMove };
 };
-const showScore = (players_lis) => {
-  player1_score.innerHTML = `${players_lis[0].name} score : ${players_lis[0].score}`;
-  player2_score.innerHTML = `${players_lis[1].name} score : ${players_lis[1].score}`;
-};
 
-startGame.addEventListener('click', function (e) {
+startGame.addEventListener('click', (e) => {
   e.preventDefault();
-  let players_lis = [];
-  let board = GameBoard(tictactoebord);
-  players_lis.push(Player(players[0].value, 'X', 0));
-  players_lis.push(Player(players[1].value, 'O', 0));
-  displaymsg(`hello players , ${players_lis[0].name} will play with ${players_lis[0].mark}
-  and ${players_lis[1].name} will play with ${players_lis[1].mark}`);
+  const playersLis = [];
+  const board = GameBoard(tictactoebord);
+  playersLis.push(Player(players[0].value, 'X', 0));
+  playersLis.push(Player(players[1].value, 'O', 0));
+  displaymsg(`hello players , ${playersLis[0].name} will play with ${playersLis[0].mark}
+  and ${playersLis[1].name} will play with ${playersLis[1].mark}`);
   movehtml.style.padding = '10px';
-  let game = gameController(board.moves);
+  const game = gameController(board.moves);
   board.showBoard();
   game.render();
-  game.validateMove(cells, players_lis);
+  game.validateMove(cells, playersLis);
   form.className = 'none';
-  showScore(players_lis);
+  showScore(playersLis);
 });
 
-restart.addEventListener('click', function (e) {
+restart.addEventListener('click', (e) => {
   e.preventDefault();
   cells.forEach((cell) => {
     cell.innerHTML = '';
     cell.innerText = '';
   });
-  let board = GameBoard(tictactoebord);
+  const board = GameBoard(tictactoebord);
   board.showBoard();
   displaymsg('let start again');
   restart.className = 'none';

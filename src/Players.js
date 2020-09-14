@@ -1,4 +1,2 @@
-const Player = (name, mark, score) => {
-  return { name, mark, score };
-};
+const Player = (name, mark, score) => ({ name, mark, score });
 export default Player;
